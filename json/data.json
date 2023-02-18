@@ -1,0 +1,13 @@
+{
+  "soldiers": [
+    { "firstName": "سهیل", "lastName": "حسنجانی", "age": "23", "city": "بابل" },
+    {
+      "firstName": "مریم",
+      "lastName": "اسماعیلی",
+      "age": "23",
+      "city": "محمودآباد"
+    },
+    { "firstName": "سهیل", "lastName": "حسنجانی", "age": "23", "city": "بابل" },
+    { "firstName": "سهیل", "lastName": "حسنجانی", "age": "23", "city": "بابل" }
+  ]
+}

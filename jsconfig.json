@@ -2,7 +2,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@api/*": ["api/*"],
+      "@com-core/*": ["components/core/*"],
+      "@com-icons/*": ["components/icons/*"],
+      "@com-layouts/*": ["components/layouts/*"],
+      "@com-pages/*": ["components/pages/*"],
+      "@com-shared/*": ["components/shared/*"],
+      "@configs/*": ["configs/*"],
+      "@constants/*": ["constants/*"],
+      "@hooks/*": ["hooks/*"],
+      "@providers/*": ["providers/*"],
+      "@redux/*": ["redux/*"],
+      "@schemas/*": ["schemas/*"],
+      "@styles/*": ["styles/*"],
+      "@theme/*": ["theme/*"]
     }
   }
 }
