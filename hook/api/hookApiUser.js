@@ -27,6 +27,10 @@ const useDeleteSoldier = () => {
   return useMutation(api.deleteSoldier);
 };
 
+const usePutUpdateSoldier = () => {
+  return useMutation(api.putUpdateSoldier);
+};
+
 // const useGetUserMe = () => {
 //   return useQuery({
 //     queryKey: ["getUserMe"],
@@ -58,6 +62,7 @@ export {
   // useGetUserStatisticalDataForProfileView,
   useGetSoldiers,
   useDeleteSoldier,
+  usePutUpdateSoldier,
   // useGetUserMe,
   // usePutUserUpdateInfo,
   // useGetUserNLastMedia,

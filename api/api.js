@@ -25,4 +25,14 @@ const deleteSoldier = async (params) => {
   });
   return data;
 };
-export { getSoldiers, postAddNewSoldier, deleteSoldier };
+
+const putUpdateSoldier = async (params) => {
+  const { data } = await axiosInstance({
+    method: "put",
+    url: "/updateSoldier",
+    data: params,
+  });
+  return data;
+};
+
+export { getSoldiers, postAddNewSoldier, deleteSoldier, putUpdateSoldier };
