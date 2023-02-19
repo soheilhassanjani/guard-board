@@ -5,13 +5,13 @@ export default async function handler(req, res) {
   if (req.method === "DELETE") {
     const jsonDirectory = path.join(process.cwd(), "json");
     const allData = await fs.readFile(jsonDirectory + "/data.json", "utf8");
-    const finalData = JSON.parse(allData).soldiers.filter(
+    const finalData = JSON.parse(allData).guardBoard.filter(
       (item) => item.id !== req?.body
     );
     if (finalData)
       writeFile(
         jsonDirectory + "/data.json",
-        JSON.stringify({ soldiers: finalData }, null, 2),
+        JSON.stringify({ guardBoard: finalData }, null, 2),
         (err) => {
           if (err) {
             res.status(400).end("its NOT okay!");
