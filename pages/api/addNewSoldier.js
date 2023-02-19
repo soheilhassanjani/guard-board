@@ -1,17 +1,32 @@
 import path from "path";
 import { promises as fs, writeFile } from "fs";
+import { v4 as uuidv4 } from "uuid";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const jsonDirectory = path.join(process.cwd(), "json");
     const allData = await fs.readFile(jsonDirectory + "/data.json", "utf8");
-    const finalData = {
-      soldiers: [...JSON.parse(allData).soldiers, req?.body],
+    const checkId = () => {
+      const uniqueId = uuidv4();
+      const isExist = JSON.parse(allData).soldiers.find(
+        (item) => item.id === uniqueId
+      );
+      if (isExist) checkId();
+      else return uniqueId;
     };
-    const checkId = JSON.parse(allData).soldiers.find(
+
+    const finalData = {
+      soldiers: [
+        ...JSON.parse(allData).soldiers,
+        { ...req?.body, id: checkId() },
+      ],
+    };
+
+    const isSameNationId = JSON.parse(allData).soldiers.find(
       (item) => item.nationalId === req?.body?.nationalId
     );
-    if (!checkId)
+
+    if (!isSameNationId)
       writeFile(
         jsonDirectory + "/data.json",
         JSON.stringify(finalData, null, 2),
