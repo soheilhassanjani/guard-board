@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const jsonDirectory = path.join(process.cwd(), "json");
     const allData = await fs.readFile(jsonDirectory + "/data.json", "utf8");
     const finalData = JSON.parse(allData).soldiers.filter(
-      (item) => item.nationalId !== req?.body
+      (item) => item.id !== req?.body
     );
     if (finalData)
       writeFile(

@@ -15,11 +15,12 @@ const SoldiersPage = () => {
   const handleUpdate = useCallback((id) => {
     putUpdateSoldier.mutate(
       {
-        nationalId: id,
+        nationalId: "2189746363",
         firstName: "محمد",
         lastName: "اسماعیلی",
         age: "19",
         city: "محمودآباد",
+        id,
       },
       {
         onSuccess: () => {
@@ -52,13 +53,13 @@ const SoldiersPage = () => {
             <div className="flex gap-2">
               <button
                 className="text-red-500 outline rounded-md p-1"
-                onClick={() => handleDelete(item.nationalId)}
+                onClick={() => handleDelete(item.id)}
               >
                 delete
               </button>
               <button
                 className="text-yellow-500 outline rounded-md p-1"
-                onClick={() => handleUpdate(item.nationalId)}
+                onClick={() => handleUpdate(item.id)}
               >
                 update
               </button>
