@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "/api/",
-  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  // headers: { "Content-Type": "application/x-www-form-urlencoded" },
 });
 
 // Add a request interceptor

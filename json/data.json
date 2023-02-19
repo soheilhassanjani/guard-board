@@ -1,13 +1,25 @@
 {
   "soldiers": [
-    { "firstName": "سهیل", "lastName": "حسنجانی", "age": "23", "city": "بابل" },
     {
+      "nationalId": "2138756385",
       "firstName": "مریم",
       "lastName": "اسماعیلی",
       "age": "23",
       "city": "محمودآباد"
     },
-    { "firstName": "سهیل", "lastName": "حسنجانی", "age": "23", "city": "بابل" },
-    { "firstName": "سهیل", "lastName": "حسنجانی", "age": "23", "city": "بابل" }
+    {
+      "nationalId": "2058756385",
+      "firstName": "سهیل",
+      "lastName": "حسنجانی",
+      "age": "23",
+      "city": "بابل"
+    },
+    {
+      "nationalId": "2199746363",
+      "firstName": "علی",
+      "lastName": "اسماعیلی",
+      "age": "22",
+      "city": "محمودآباد"
+    }
   ]
 }

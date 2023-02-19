@@ -5,9 +5,9 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 //   return useMutation(api.postUserRequestResetPassword);
 // };
 
-// const usePostUserResetPassword = () => {
-//   return useMutation(api.postUserResetPassword);
-// };
+const usePostAddNewSoldier = () => {
+  return useMutation(api.postAddNewSoldier);
+};
 
 // const useGetUserStatisticalDataForProfileView = () => {
 //   return useQuery({
@@ -21,6 +21,10 @@ const useGetSoldiers = () => {
     queryKey: ["getSoldiers"],
     queryFn: () => api.getSoldiers(),
   });
+};
+
+const useDeleteSoldier = () => {
+  return useMutation(api.deleteSoldier);
 };
 
 // const useGetUserMe = () => {
@@ -50,9 +54,10 @@ const useGetSoldiers = () => {
 
 export {
   // usePostUserRequestResetPassword,
-  // usePostUserResetPassword,
+  usePostAddNewSoldier,
   // useGetUserStatisticalDataForProfileView,
   useGetSoldiers,
+  useDeleteSoldier,
   // useGetUserMe,
   // usePutUserUpdateInfo,
   // useGetUserNLastMedia,

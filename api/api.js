@@ -1,5 +1,14 @@
 import axiosInstance from "configs/axios";
 
+const postAddNewSoldier = async (params) => {
+  const { data } = await axiosInstance({
+    method: "post",
+    url: "/addNewSoldier",
+    data: params,
+  });
+  return data;
+};
+
 const getSoldiers = async () => {
   const { data } = await axiosInstance({
     method: "get",
@@ -8,4 +17,12 @@ const getSoldiers = async () => {
   return data;
 };
 
-export { getSoldiers };
+const deleteSoldier = async (params) => {
+  const { data } = await axiosInstance({
+    method: "delete",
+    url: "/deleteSoldier",
+    data: params,
+  });
+  return data;
+};
+export { getSoldiers, postAddNewSoldier, deleteSoldier };
