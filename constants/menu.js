@@ -32,7 +32,7 @@ const menu = [
     icon: DocumentIcon,
   },
   {
-    href: "/add-guard-boards",
+    href: "/guard-boards/add",
     label: "ثبت لوح نگهبانی",
     icon: DocumentPlusIcon,
   },
