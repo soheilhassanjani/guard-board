@@ -21,23 +21,25 @@ const AppLayout = ({ children }) => {
           سامانه لوح نگهبانی
         </div>
         <ul className="flex flex-col px-4 pt-4 space-y-3">
-          {menu.map((item, i) => {
-            return (
-              <Link key={i} href={item.href}>
-                <li
-                  className={clsx(
-                    "flex transition items-center px-4 py-3 text-sm rounded-lg hover:bg-gray-700 hover:text-white",
-                    pathname === item.href
-                      ? "bg-gray-700 text-white"
-                      : "text-gray-400"
-                  )}
-                >
-                  <item.icon className="ml-4" />
-                  {item.label}
-                </li>
-              </Link>
-            );
-          })}
+          {menu
+            .filter((item) => !item.ignore)
+            .map((item, i) => {
+              return (
+                <Link key={i} href={item.href}>
+                  <li
+                    className={clsx(
+                      "flex transition items-center px-4 py-3 text-sm rounded-lg hover:bg-gray-700 hover:text-white",
+                      pathname === item.href
+                        ? "bg-gray-700 text-white"
+                        : "text-gray-400"
+                    )}
+                  >
+                    <item.icon className="ml-4" />
+                    {item.label}
+                  </li>
+                </Link>
+              );
+            })}
         </ul>
       </div>
       <div className="flex items-center justify-between w-full h-16 px-4 bg-white border-b border-gray-200">

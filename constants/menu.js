@@ -16,6 +16,12 @@ const menu = [
     icon: UsersIcon,
   },
   {
+    href: "/soldiers/[id]",
+    label: "لیست سرباز ها",
+    icon: UsersIcon,
+    ignore: true,
+  },
+  {
     href: "/add-soldier",
     label: "افزودن سرباز",
     icon: UsersPlusIcon,
