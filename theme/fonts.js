@@ -94,7 +94,7 @@ const IRANSansX = localFont({
     },
   ],
   variable: "--font-iran-sans-x",
-  // display: "swap",
+  display: "swap",
 });
 
 export { IRANSansX };

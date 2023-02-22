@@ -1,19 +1,11 @@
 {
   "soldiers": [
     {
-      "nationalId": "2138756385",
-      "firstName": "مریم",
+      "nationalId": "2189746363",
+      "firstName": "محمد",
       "lastName": "اسماعیلی",
-      "age": "23",
+      "age": "19",
       "city": "محمودآباد",
-      "id": "1"
-    },
-    {
-      "nationalId": "2058756385",
-      "firstName": "سهیل",
-      "lastName": "حسنجانی",
-      "age": "23",
-      "city": "بابل",
       "id": "2"
     },
     {
