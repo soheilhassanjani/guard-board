@@ -7,7 +7,7 @@ const ReactToastifyProvider = ({ children }) => {
     <>
       {children}
       <ToastContainer
-        position="top-center"
+        position="bottom-center"
         closeOnClick={false}
         draggable={false}
         theme="colored"

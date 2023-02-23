@@ -13,3 +13,7 @@
     @apply font-iran-sans-x;
   }
 }
+
+.Toastify__toast {
+  @apply !font-iran-sans-x text-sm;
+}

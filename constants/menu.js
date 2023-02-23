@@ -22,7 +22,7 @@ const menu = [
     ignore: true,
   },
   {
-    href: "/add-soldier",
+    href: "/soldiers/add",
     label: "افزودن سرباز",
     icon: UsersPlusIcon,
   },

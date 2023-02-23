@@ -1,21 +1,6 @@
 import * as api from "@api/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-// const usePostUserRequestResetPassword = () => {
-//   return useMutation(api.postUserRequestResetPassword);
-// };
-
-const usePostAddNewSoldier = () => {
-  return useMutation(api.postAddNewSoldier);
-};
-
-// const useGetUserStatisticalDataForProfileView = () => {
-//   return useQuery({
-//     queryKey: ["getUserStatisticalDataForProfileView"],
-//     queryFn: () => api.getUserStatisticalDataForProfileView(),
-//   });
-// };
-
 const useGetSoldiers = () => {
   return useQuery({
     queryKey: ["getSoldiers"],
@@ -23,47 +8,74 @@ const useGetSoldiers = () => {
   });
 };
 
-const useDeleteSoldier = () => {
-  return useMutation(api.deleteSoldier);
+const usePostAddNewSoldier = () => {
+  const queryClient = useQueryClient();
+  return useMutation(api.postAddNewSoldier, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["getSoldiers"]);
+    },
+  });
 };
 
 const usePutUpdateSoldier = () => {
-  return useMutation(api.putUpdateSoldier);
+  const queryClient = useQueryClient();
+  return useMutation(api.putUpdateSoldier, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["getSoldiers"]);
+    },
+  });
 };
 
-// const useGetUserMe = () => {
-//   return useQuery({
-//     queryKey: ["getUserMe"],
-//     queryFn: () => api.getUserMe(),
-//   });
-// };
+const useDeleteSoldier = () => {
+  const queryClient = useQueryClient();
+  return useMutation(api.deleteSoldier, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["getSoldiers"]);
+    },
+  });
+};
 
-// const usePutUserUpdateInfo = () => {
-//   const queryClient = useQueryClient();
-//   return useMutation(api.putUserUpdateInfo, {
-//     onSuccess: () => {
-//       queryClient.invalidateQueries(["getUserMe"]);
-//       queryClient.invalidateQueries(["getUserStatisticalDataForProfileView"]);
-//     },
-//   });
-// };
+const useGetGuardBoards = () => {
+  return useQuery({
+    queryKey: ["getGuardBoards"],
+    queryFn: () => api.getGuardBoards(),
+  });
+};
 
-// const useGetUserNLastMedia = (params) => {
-//   return useQuery({
-//     queryKey: ["getUserNLastMedia", params],
-//     queryFn: () => api.getUserNLastMedia(params),
-//     enabled: !!params,
-//   });
-// };
+const usePostAddNewGuardBoard = () => {
+  const queryClient = useQueryClient();
+  return useMutation(api.postAddNewGuardBoard, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["getGuardBoards"]);
+    },
+  });
+};
+
+const usePutUpdateGuardBoard = () => {
+  const queryClient = useQueryClient();
+  return useMutation(api.putUpdateGuardBoard, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["getGuardBoards"]);
+    },
+  });
+};
+
+const useDeleteGuardBoard = () => {
+  const queryClient = useQueryClient();
+  return useMutation(api.deleteGuardBoard, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["getGuardBoards"]);
+    },
+  });
+};
 
 export {
-  // usePostUserRequestResetPassword,
-  usePostAddNewSoldier,
-  // useGetUserStatisticalDataForProfileView,
   useGetSoldiers,
-  useDeleteSoldier,
+  usePostAddNewSoldier,
   usePutUpdateSoldier,
-  // useGetUserMe,
-  // usePutUserUpdateInfo,
-  // useGetUserNLastMedia,
+  useDeleteSoldier,
+  useGetGuardBoards,
+  usePostAddNewGuardBoard,
+  usePutUpdateGuardBoard,
+  useDeleteGuardBoard,
 };

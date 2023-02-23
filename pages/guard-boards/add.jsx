@@ -1,47 +1,21 @@
+import React, { useState } from "react";
+import DatePicker from "@com-core/DatePicker";
 import Input from "@com-core/Input";
 import AppLayout from "@com-layouts/AppLayout";
 import GuardBoard from "@com-shared/GuardBoard";
-import Table from "@com-shared/Table";
-import { useGetSoldiers } from "hook/api/hookApiUser";
-import React, { useCallback, useState } from "react";
 
 const AddGuardBoardsPage = () => {
+  const [guardBoardDate, setGuardBoardDate] = useState(null);
   const [directionCount, setDirectionCount] = useState(3);
   const [guardCount, setGuardCount] = useState(3);
   //
-  const { data } = useGetSoldiers();
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "نام",
-        accessor: "firstName",
-      },
-      {
-        Header: "نام خانوادگی",
-        accessor: "lastName",
-      },
-      {
-        Header: "سن",
-        accessor: "age",
-      },
-      {
-        Header: "کدملی",
-        accessor: "nationalId",
-      },
-      {
-        Header: "شهر",
-        accessor: "city",
-      },
-    ],
-    []
-  );
   return (
     <div className="p-4">
       <div className="grid grid-cols-4 gap-3 mb-3">
         <div className="col-span-1">
           <div className="">
             <label className="block mb-1 text-sm text-gray-600">تاریخ</label>
-            <Input />
+            <DatePicker value={guardBoardDate} onChange={setGuardBoardDate} />
           </div>
         </div>
         <div className="col-span-1">
@@ -70,8 +44,13 @@ const AddGuardBoardsPage = () => {
             />
           </div>
         </div>
+        <div className="col-span-1">
+          <button className="w-full h-10 px-3 py-2 mt-6 text-sm text-white bg-blue-500 rounded-lg outline-none">
+            ثبت
+          </button>
+        </div>
         <div className="col-span-4">
-          {/* oooooooooo */}
+          {/* guard board */}
           <GuardBoard directionCount={directionCount} guardCount={guardCount} />
         </div>
       </div>

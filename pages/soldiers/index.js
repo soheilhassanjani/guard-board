@@ -9,9 +9,12 @@ import {
   usePutUpdateSoldier,
 } from "hook/api/hookApiUser";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useCallback } from "react";
+import { toast } from "react-toastify";
 
 const SoldiersPage = () => {
+  const { push } = useRouter();
   const { data } = useGetSoldiers();
 
   const deleteSoldier = useDeleteSoldier();
@@ -40,11 +43,11 @@ const SoldiersPage = () => {
 
   const handleDelete = useCallback((id) => {
     deleteSoldier.mutate(id, {
-      onSuccess: () => {
-        console.log("done");
+      onSuccess: (res) => {
+        toast.success(res.message);
       },
       onError: (err) => {
-        console.log(err);
+        toast.error(err.response.data.message);
       },
     });
   }, []);
@@ -73,7 +76,7 @@ const SoldiersPage = () => {
       },
       {
         Header: "ابزار",
-        Cell: () => {
+        Cell: ({ row }) => {
           return (
             <span className="flex items-center space-s-3">
               <Link
@@ -108,7 +111,10 @@ const SoldiersPage = () => {
                         >
                           بستن
                         </button>
-                        <button className="flex-shrink-0 w-16 px-3 py-2 text-sm text-white bg-red-500 rounded-lg outline-none">
+                        <button
+                          onClick={() => handleDelete(row.original.id)}
+                          className="flex-shrink-0 w-16 px-3 py-2 text-sm text-white bg-red-500 rounded-lg outline-none"
+                        >
                           حذف
                         </button>
                       </div>

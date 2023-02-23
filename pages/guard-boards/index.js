@@ -5,15 +5,15 @@ import ConfirmModal from "@com-shared/ConfirmModal";
 import Table from "@com-shared/Table";
 import {
   useDeleteSoldier,
-  useGetSoldiers,
+  useGetGuardBoards,
   usePutUpdateSoldier,
 } from "hook/api/hookApiUser";
 import Link from "next/link";
 import React, { useCallback } from "react";
 
 const SoldiersPage = () => {
-  const { data } = useGetSoldiers();
-
+  const { data } = useGetGuardBoards();
+  console.log(data);
   const deleteSoldier = useDeleteSoldier();
   const putUpdateSoldier = usePutUpdateSoldier();
 
