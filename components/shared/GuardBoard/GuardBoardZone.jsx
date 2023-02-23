@@ -28,17 +28,22 @@ const GuardBoardZone = ({
     );
   }, [addedSoldiers, directionNumber, guardNumber]);
   //
+  if (itemDetail) {
+    return (
+      <div className="flex items-center justify-center flex-1 text-sm border-r border-gray-200">
+        <GuardBoardTableItem
+          soldier={itemDetail}
+          setAddedSoldiers={setAddedSoldiers}
+        />
+      </div>
+    );
+  }
   return (
     <div
       ref={drop}
       className="flex items-center justify-center flex-1 text-sm border-r border-gray-200"
     >
-      {itemDetail ? (
-        <GuardBoardTableItem
-          soldier={itemDetail}
-          setAddedSoldiers={setAddedSoldiers}
-        />
-      ) : isActive ? (
+      {isActive ? (
         <div className="w-full h-full bg-green-100 animate-pulse"></div>
       ) : (
         <span className="text-gray-400">خالی</span>

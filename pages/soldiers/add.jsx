@@ -63,6 +63,11 @@ const AddSoldiersPage = () => {
           <div className="">
             <label className="block mb-1 text-sm text-gray-600">کدملی</label>
             <Input
+              onKeyPress={(event) => {
+                if (!/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+              }}
               value={nationalId}
               onChange={(e) => setNationalId(e.target.value)}
             />
@@ -71,7 +76,15 @@ const AddSoldiersPage = () => {
         <div className="col-span-1 col-start-2">
           <div className="">
             <label className="block mb-1 text-sm text-gray-600">سن</label>
-            <Input value={age} onChange={(e) => setAge(e.target.value)} />
+            <Input
+              onKeyPress={(event) => {
+                if (!/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+              }}
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+            />
           </div>
         </div>
         <div className="col-span-1 col-start-2">

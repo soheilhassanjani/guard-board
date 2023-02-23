@@ -9,6 +9,7 @@ export default async function handler(req, res) {
     const allData = await fs.readFile(jsonDirectory + "/data.json", "utf8");
     const jsonAllData = JSON.parse(allData);
     const soldiers = jsonAllData.soldiers;
+    const guardBoards = jsonAllData.guardBoards;
     //
     const isExist = soldiers.find((item) => item.id === req?.body);
     //
@@ -17,24 +18,33 @@ export default async function handler(req, res) {
         message: "این شناسه وجود ندارد",
       });
     } else {
-      // remove
-      const finalData = {
-        ...jsonAllData,
-        soldiers: soldiers.filter((item) => item.id !== req?.body),
-      };
-      // write file
-      writeFile(
-        jsonDirectory + "/data.json",
-        JSON.stringify(finalData, null, 2),
-        (err) => {
-          if (err) {
-            return res.status(400).end("its NOT okay!");
+      const haveGuardBoard = guardBoards.some((guardBoard) => {
+        return guardBoard.soldiers.some((soldier) => soldier.id === req?.body);
+      });
+      if (haveGuardBoard) {
+        return res.status(400).json({
+          message: "این سرباز در لوح نگهبانی قرار دارد .",
+        });
+      } else {
+        // remove
+        const finalData = {
+          ...jsonAllData,
+          soldiers: soldiers.filter((item) => item.id !== req?.body),
+        };
+        // write file
+        writeFile(
+          jsonDirectory + "/data.json",
+          JSON.stringify(finalData, null, 2),
+          (err) => {
+            if (err) {
+              return res.status(400).end("its NOT okay!");
+            }
+            return res.status(200).json({
+              message: "با موفقیت حذف شد",
+            });
           }
-          return res.status(200).json({
-            message: "با موفقیت حذف شد",
-          });
-        }
-      );
+        );
+      }
     }
   });
 }
