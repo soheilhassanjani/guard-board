@@ -41,10 +41,11 @@ const SoldiersPage = () => {
     );
   }, []);
 
-  const handleDelete = useCallback((id) => {
+  const handleDelete = useCallback((id, cb) => {
     deleteSoldier.mutate(id, {
       onSuccess: (res) => {
         toast.success(res.message);
+        cb.onSuccess();
       },
       onError: (err) => {
         toast.error(err.response.data.message);
@@ -112,7 +113,11 @@ const SoldiersPage = () => {
                           بستن
                         </button>
                         <button
-                          onClick={() => handleDelete(row.original.id)}
+                          onClick={() =>
+                            handleDelete(row.original.id, {
+                              onSuccess: () => closeModal(),
+                            })
+                          }
                           className="flex-shrink-0 w-16 px-3 py-2 text-sm text-white bg-red-500 rounded-lg outline-none"
                         >
                           حذف

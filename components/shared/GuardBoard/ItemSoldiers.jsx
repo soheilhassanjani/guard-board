@@ -17,8 +17,6 @@ const ItemSoldiers = ({ soldier, setAddedSoldiers }) => {
             guardNumber: dropResult?.guardNumber,
           },
         ]);
-        console.log(dropResult);
-        // alert(`You dropped ${item.name} into ${dropResult.name}!`);
       }
     },
     collect: (monitor) => ({

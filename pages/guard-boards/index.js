@@ -3,48 +3,23 @@ import TrashIcon from "@com-icons/TrashIcon";
 import AppLayout from "@com-layouts/AppLayout";
 import ConfirmModal from "@com-shared/ConfirmModal";
 import Table from "@com-shared/Table";
-import {
-  useDeleteSoldier,
-  useGetGuardBoards,
-  usePutUpdateSoldier,
-} from "hook/api/hookApiUser";
+import { useDeleteGuardBoard, useGetGuardBoards } from "hook/api/hookApiUser";
 import Link from "next/link";
 import React, { useCallback } from "react";
+import { toast } from "react-toastify";
 
-const SoldiersPage = () => {
+const GuardBoardsPage = () => {
   const { data } = useGetGuardBoards();
-  console.log(data);
-  const deleteSoldier = useDeleteSoldier();
-  const putUpdateSoldier = usePutUpdateSoldier();
+  const deleteGuardBoard = useDeleteGuardBoard();
 
-  const handleUpdate = useCallback((id) => {
-    putUpdateSoldier.mutate(
-      {
-        nationalId: "2189746363",
-        firstName: "محمد",
-        lastName: "اسماعیلی",
-        age: "19",
-        city: "محمودآباد",
-        id,
-      },
-      {
-        onSuccess: () => {
-          console.log("done");
-        },
-        onError: (err) => {
-          console.log(err);
-        },
-      }
-    );
-  }, []);
-
-  const handleDelete = useCallback((id) => {
-    deleteSoldier.mutate(id, {
-      onSuccess: () => {
-        console.log("done");
+  const handleDelete = useCallback((id, cb) => {
+    deleteGuardBoard.mutate(id, {
+      onSuccess: (res) => {
+        toast.success(res.message);
+        cb.onSuccess();
       },
       onError: (err) => {
-        console.log(err);
+        toast.error(err.response.data.message);
       },
     });
   }, []);
@@ -52,28 +27,30 @@ const SoldiersPage = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "نام",
-        accessor: "firstName",
+        Header: "تاریخ",
+        accessor: "guardBoardDate",
+        Cell: ({ value }) => {
+          return `${value?.year}/${value?.month}/${value?.day}`;
+        },
       },
       {
-        Header: "نام خانوادگی",
-        accessor: "lastName",
+        Header: "تعداد پاس",
+        accessor: "guardCount",
       },
       {
-        Header: "سن",
-        accessor: "age",
+        Header: "تعداد مسیر",
+        accessor: "directionCount",
       },
       {
-        Header: "کدملی",
-        accessor: "nationalId",
-      },
-      {
-        Header: "شهر",
-        accessor: "city",
+        Header: "تعداد سرباز",
+        accessor: "soldiers",
+        Cell: ({ value }) => {
+          return value.length;
+        },
       },
       {
         Header: "ابزار",
-        Cell: () => {
+        Cell: ({ row }) => {
           return (
             <span className="flex items-center space-s-3">
               <Link
@@ -108,7 +85,14 @@ const SoldiersPage = () => {
                         >
                           بستن
                         </button>
-                        <button className="flex-shrink-0 w-16 px-3 py-2 text-sm text-white bg-red-500 rounded-lg outline-none">
+                        <button
+                          onClick={() =>
+                            handleDelete(row.original.id, {
+                              onSuccess: () => closeModal(),
+                            })
+                          }
+                          className="flex-shrink-0 w-16 px-3 py-2 text-sm text-white bg-red-500 rounded-lg outline-none"
+                        >
                           حذف
                         </button>
                       </div>
@@ -131,8 +115,8 @@ const SoldiersPage = () => {
   );
 };
 
-SoldiersPage.getLayout = function getLayout(page) {
+GuardBoardsPage.getLayout = function getLayout(page) {
   return <AppLayout>{page}</AppLayout>;
 };
 
-export default SoldiersPage;
+export default GuardBoardsPage;
