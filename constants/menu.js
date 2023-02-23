@@ -32,6 +32,12 @@ const menu = [
     icon: DocumentIcon,
   },
   {
+    href: "/guard-boards/[id]",
+    label: "لیست لوح های نگهبانی",
+    icon: DocumentPlusIcon,
+    ignore: true,
+  },
+  {
     href: "/guard-boards/add",
     label: "ثبت لوح نگهبانی",
     icon: DocumentPlusIcon,

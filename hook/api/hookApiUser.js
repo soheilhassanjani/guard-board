@@ -8,11 +8,20 @@ const useGetSoldiers = () => {
   });
 };
 
+const useGetSoldierById = (params) => {
+  return useQuery({
+    queryKey: ["getSoldierById"],
+    queryFn: () => api.getSoldierById(params),
+    enabled: !!params,
+  });
+};
+
 const usePostAddNewSoldier = () => {
   const queryClient = useQueryClient();
   return useMutation(api.postAddNewSoldier, {
     onSuccess: () => {
       queryClient.invalidateQueries(["getSoldiers"]);
+      queryClient.invalidateQueries(["getSoldierById"]);
     },
   });
 };
@@ -22,6 +31,7 @@ const usePutUpdateSoldier = () => {
   return useMutation(api.putUpdateSoldier, {
     onSuccess: () => {
       queryClient.invalidateQueries(["getSoldiers"]);
+      queryClient.invalidateQueries(["getSoldierById"]);
     },
   });
 };
@@ -31,6 +41,7 @@ const useDeleteSoldier = () => {
   return useMutation(api.deleteSoldier, {
     onSuccess: () => {
       queryClient.invalidateQueries(["getSoldiers"]);
+      queryClient.invalidateQueries(["getSoldierById"]);
     },
   });
 };
@@ -42,11 +53,20 @@ const useGetGuardBoards = () => {
   });
 };
 
+const useGetGuardBoardById = (params) => {
+  return useQuery({
+    queryKey: ["getGuardBoardById"],
+    queryFn: () => api.getGuardBoardById(params),
+    enabled: !!params,
+  });
+};
+
 const usePostAddNewGuardBoard = () => {
   const queryClient = useQueryClient();
   return useMutation(api.postAddNewGuardBoard, {
     onSuccess: () => {
       queryClient.invalidateQueries(["getGuardBoards"]);
+      queryClient.invalidateQueries(["getGuardBoardById"]);
     },
   });
 };
@@ -56,6 +76,7 @@ const usePutUpdateGuardBoard = () => {
   return useMutation(api.putUpdateGuardBoard, {
     onSuccess: () => {
       queryClient.invalidateQueries(["getGuardBoards"]);
+      queryClient.invalidateQueries(["getGuardBoardById"]);
     },
   });
 };
@@ -65,16 +86,19 @@ const useDeleteGuardBoard = () => {
   return useMutation(api.deleteGuardBoard, {
     onSuccess: () => {
       queryClient.invalidateQueries(["getGuardBoards"]);
+      queryClient.invalidateQueries(["getGuardBoardById"]);
     },
   });
 };
 
 export {
   useGetSoldiers,
+  useGetSoldierById,
   usePostAddNewSoldier,
   usePutUpdateSoldier,
   useDeleteSoldier,
   useGetGuardBoards,
+  useGetGuardBoardById,
   usePostAddNewGuardBoard,
   usePutUpdateGuardBoard,
   useDeleteGuardBoard,

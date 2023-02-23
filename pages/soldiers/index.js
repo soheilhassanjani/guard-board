@@ -84,7 +84,7 @@ const SoldiersPage = () => {
                 href={{
                   pathname: "/soldiers/[id]",
                   query: {
-                    id: 10,
+                    id: row.original.id,
                   },
                 }}
               >

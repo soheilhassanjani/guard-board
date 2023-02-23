@@ -55,9 +55,9 @@ const GuardBoardsPage = () => {
             <span className="flex items-center space-s-3">
               <Link
                 href={{
-                  pathname: "/soldiers/[id]",
+                  pathname: "/guard-boards/[id]",
                   query: {
-                    id: 10,
+                    id: row.original.id,
                   },
                 }}
               >
